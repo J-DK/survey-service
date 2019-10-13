@@ -2,6 +2,8 @@ package com.shrike.survey.model;
 
 import java.util.List;
 
+import com.google.gson.JsonObject;
+
 public interface GetFeedbackRequestResponse {
 
 	public class GetFeedbackRequest {
@@ -37,7 +39,7 @@ public interface GetFeedbackRequestResponse {
 
 		private String surveyName;
 
-		private String answer;
+		private JsonObject answer;
 
 		public String getSurveyId() {
 			return surveyId;
@@ -71,11 +73,11 @@ public interface GetFeedbackRequestResponse {
 			this.surveyName = surveyName;
 		}
 
-		public String getAnswer() {
+		public JsonObject getAnswer() {
 			return answer;
 		}
 
-		public void setAnswer(String answer) {
+		public void setAnswer(JsonObject answer) {
 			this.answer = answer;
 		}
 

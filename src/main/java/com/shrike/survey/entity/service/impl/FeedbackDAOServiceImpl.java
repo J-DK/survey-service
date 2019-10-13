@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonParser;
 import com.shrike.survey.entity.Feedback;
 import com.shrike.survey.entity.repository.FeedbackRepository;
 import com.shrike.survey.entity.service.IFeedbackDAOService;
@@ -49,13 +50,13 @@ public class FeedbackDAOServiceImpl implements IFeedbackDAOService {
 		GetFeedbackResponse getFeedbackResponse = new GetFeedbackResponse();
 		List<FeedbackResponse> feedbackResponses = new ArrayList<>();
 		List<Feedback> feedbacks = feedbackRepository.findAllByAuthor(author);
-		
+		JsonParser jsonParser = new JsonParser();
 		feedbacks.forEach(feedback -> {
 			FeedbackResponse feedbackResponse = new FeedbackResponse();
 			feedbackResponse.setAuthor(feedback.getAuthor());
 			feedbackResponse.setSurveyedBy(feedback.getSurveyedBy());
 			feedbackResponse.setSurveyName(feedback.getSurveyName());
-			feedbackResponse.setAnswer(feedback.getAnswer());
+			feedbackResponse.setAnswer(jsonParser.parse(feedback.getAnswer()).getAsJsonObject());
 			feedbackResponse.setSurveyId(feedback.getSurveyId());
 			feedbackResponses.add(feedbackResponse);
 		});
