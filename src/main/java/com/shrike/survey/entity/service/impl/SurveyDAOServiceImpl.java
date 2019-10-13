@@ -74,7 +74,7 @@ public class SurveyDAOServiceImpl implements ISurveyDAOService {
 	}
 
 	private String getSurveyId() {
-		return "SURVEY_" + RandomStringUtils.randomAlphanumeric(10);
+		return "survey-" + RandomStringUtils.randomAlphanumeric(10);
 	}
 
 }

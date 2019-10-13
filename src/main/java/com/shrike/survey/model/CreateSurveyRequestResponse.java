@@ -5,7 +5,7 @@ import lombok.Data;
 
 public interface CreateSurveyRequestResponse {
 
-	@Data
+  @Data
   class CreateSurveyRequest {
 
     private String emailId;
