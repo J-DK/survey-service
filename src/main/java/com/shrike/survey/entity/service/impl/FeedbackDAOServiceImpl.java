@@ -50,13 +50,12 @@ public class FeedbackDAOServiceImpl implements IFeedbackDAOService {
 		GetFeedbackResponse getFeedbackResponse = new GetFeedbackResponse();
 		List<FeedbackResponse> feedbackResponses = new ArrayList<>();
 		List<Feedback> feedbacks = feedbackRepository.findAllByAuthor(author);
-		JsonParser jsonParser = new JsonParser();
 		feedbacks.forEach(feedback -> {
 			FeedbackResponse feedbackResponse = new FeedbackResponse();
 			feedbackResponse.setAuthor(feedback.getAuthor());
 			feedbackResponse.setSurveyedBy(feedback.getSurveyedBy());
 			feedbackResponse.setSurveyName(feedback.getSurveyName());
-			feedbackResponse.setAnswer(jsonParser.parse(feedback.getAnswer()).getAsJsonObject());
+			feedbackResponse.setAnswer(feedback.getAnswer());
 			feedbackResponse.setSurveyId(feedback.getSurveyId());
 			feedbackResponses.add(feedbackResponse);
 		});

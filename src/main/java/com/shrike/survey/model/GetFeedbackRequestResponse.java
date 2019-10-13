@@ -39,7 +39,7 @@ public interface GetFeedbackRequestResponse {
 
 		private String surveyName;
 
-		private JsonObject answer;
+		private String answer;
 
 		public String getSurveyId() {
 			return surveyId;
@@ -73,11 +73,11 @@ public interface GetFeedbackRequestResponse {
 			this.surveyName = surveyName;
 		}
 
-		public JsonObject getAnswer() {
+		public String getAnswer() {
 			return answer;
 		}
 
-		public void setAnswer(JsonObject answer) {
+		public void setAnswer(String answer) {
 			this.answer = answer;
 		}
 
