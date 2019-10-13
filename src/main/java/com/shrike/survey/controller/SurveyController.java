@@ -28,11 +28,11 @@ public class SurveyController {
 
 	@PostMapping("/v1/surveys")
 	@ApiOperation(value = "Create survey", response = CreateSurveyResponse.class)
-	@ApiResponses({ @ApiResponse(code = 000, message = "Bank details fetched successfully"),
+	@ApiResponses({ @ApiResponse(code = 200, message = "Created survey successfully"),
 			@ApiResponse(code = 403, message = "Unauthorized Access"),
 			@ApiResponse(code = 404, message = "API Not Found"),
 			@ApiResponse(code = 50001, message = "User not found. Can't create a survey."),
-			@ApiResponse(code = 50002, message = "Could'nt create and save survey. Please try again.")
+			@ApiResponse(code = 50002, message = "Couldn't create and save survey. Please try again.")
 
 	})
 	public BaseResponse<CreateSurveyResponse> createSurvey(@RequestBody CreateSurveyRequest createSurveyRequest) {
