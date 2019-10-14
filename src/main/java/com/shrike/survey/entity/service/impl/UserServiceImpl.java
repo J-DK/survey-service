@@ -1,5 +1,8 @@
 package com.shrike.survey.entity.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.shrike.survey.entity.User;
 import com.shrike.survey.entity.repository.UserRepository;
 import com.shrike.survey.entity.service.UserService;
@@ -8,17 +11,12 @@ import com.shrike.survey.model.LoginUserRequestResponse.LoginUserResponse;
 import com.shrike.survey.model.SignupUserRequestResponse.SignupUserRequest;
 import com.shrike.survey.model.SignupUserRequestResponse.SignupUserResponse;
 import com.shrike.survey.util.EncryptionUtil;
+
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
 public class UserServiceImpl implements UserService {
-
-	private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
 
 	@Autowired
 	private UserRepository userRepository;
@@ -42,7 +40,7 @@ public class UserServiceImpl implements UserService {
 					user.setPassword(EncryptionUtil.encrpyt(signupUserRequest.getPassword()));
 				}
 			} catch (Exception e) {
-				LOGGER.debug("Password Encryption Error");
+				log.debug("Password Encryption Error");
 			}
 
 			try {
@@ -81,7 +79,7 @@ public class UserServiceImpl implements UserService {
 				}
 
 			} catch (Exception e) {
-				LOGGER.debug("{}", e.getLocalizedMessage());
+				log.debug("{}", e.getLocalizedMessage());
 			}
 		} else {
 			loginUserResponse.setCode("1004");

@@ -17,6 +17,8 @@ import com.shrike.survey.model.CreateFeedBackRequestResponse.CreateFeedBackRespo
 import com.shrike.survey.model.CreateSurveyRequestResponse.CreateSurveyRequest;
 import com.shrike.survey.model.CreateSurveyRequestResponse.CreateSurveyResponse;
 import com.shrike.survey.model.GetFeedbackRequestResponse.GetFeedbackResponse;
+import com.shrike.survey.model.GetSurveyRequestResponse.GetSurveyByIdResponse;
+import com.shrike.survey.model.GetSurveyRequestResponse.GetSurveyResponse;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -67,5 +69,25 @@ public class SurveyController {
 	})
 	public BaseResponse<GetFeedbackResponse> getAllFeedback(@RequestParam("author") String author) {
 		return iFeedbackDAOService.getAllFeedbacksByAuthor(author);
+	}
+	
+	@GetMapping("/v1/surveys")
+	@ApiOperation(value = "Get All Surveys", response = GetSurveyResponse.class)
+	@ApiResponses({ @ApiResponse(code = 200, message = "Fetched surveys successfully."),
+		@ApiResponse(code = 403, message = "Unauthorized Access"),
+		@ApiResponse(code = 404, message = "API Not Found"),
+	})
+	public BaseResponse<GetSurveyResponse> getAllSurveys() {
+		return iSurveyDAOService.getAllSurveys();
+	}
+	
+	@GetMapping("/v1/survey")
+	@ApiOperation(value = "Get Survey by SurveyId", response = GetSurveyByIdResponse.class)
+	@ApiResponses({ @ApiResponse(code = 200, message = "Fetched survey for the surveyId successfully."),
+		@ApiResponse(code = 403, message = "Unauthorized Access"),
+		@ApiResponse(code = 404, message = "API Not Found"),
+	})
+	public BaseResponse<GetSurveyByIdResponse> getSurvey(@RequestParam("surveyId") String surveyId) {
+		return iSurveyDAOService.getSurveyBySurveyId(surveyId);
 	}
 }

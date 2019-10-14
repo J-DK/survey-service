@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 import lombok.Data;
 
 @Data
@@ -18,7 +19,7 @@ public class Survey {
 
 	private String surveyName;
 
-	private Integer userId;
+	private String userId;
 
 	private String surveyId;
 
